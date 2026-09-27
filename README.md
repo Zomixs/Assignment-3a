@@ -1,1 +1,1 @@
-# Assignment-3a
+The AES takes a 16-byte message, substitutes the bytes, shifts rows, mixes the columns, and combines the data with round keys. These steps are then repeated for multiple rounds to produce a ciphertext. The decryption functions reverse these operations to recover the original message.
