@@ -159,12 +159,12 @@ r_con = (
     0xEF, 0xC5, 0x91
 )
 
-class AES:
+class AES: # chekcs the key size and determines how many rounds AES needs
     def __init__(self, master_key):
         self.n_rounds = {16: 10, 24: 12, 32: 14}[len(master_key)]
         self._key_matrices = self._expand_key(master_key)
 
-    def _expand_key(self, master_key):
+    def _expand_key(self, master_key): # creation of keys
         key_columns = bytes2matrix(master_key)
 
         iteration_size = len(master_key) // 4
@@ -191,7 +191,7 @@ class AES:
             for i in range(len(key_columns) // 4)
         ]
 
-    def encrypt_block(self, plaintext):
+    def encrypt_block(self, plaintext): #encryption part
         assert len(plaintext) == 16
 
         plain_state = bytes2matrix(plaintext)
@@ -210,7 +210,7 @@ class AES:
 
         return matrix2bytes(plain_state)
 
-    def decrypt_block(self, ciphertext):
+    def decrypt_block(self, ciphertext):#
         assert len(ciphertext) == 16
 
         cipher_state = bytes2matrix(ciphertext)
